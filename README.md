@@ -1,45 +1,48 @@
-## User story
-The first user story I used while starting this project:
+# Bookmark Manager
+
+## User stories
 
 ```
-'as a user'
-'so I can quickly visit my favourite websites'
-'I would like to see a list of my bookmarks'
+As a user
+So I can quickly visit my favourite websites
+I would like to see a list of my bookmarks
 ```
 
 ## Domain model
 
-Domain model created from this user story:
-
 ![domain model](https://github.com/YoFirmy/bookmark_manager/blob/main/images/bookmark_manager_domain_model.png?raw=true)
 
-## Database setup
+## How to use
 
-### Connect to psql
-It is recommended to use a package manager like Homebrew to install PostgreSQL. You can download Homebrew [here](https://brew.sh/).
-
-Use Homebrew to install PostgreSQL:
+### Set up
+Clone this repository and then run:
 ```
-$ brew install postgresql
-```
-Start PostgreSQL in the background (It will restart when you login):
-```
-$ brew services start postgresql
-```
-Start psql:
-```
-$ psql postgres
-postgres=#
+bundle
 ```
 
-### Create database and table
+### Database setup
 
-Create a database called bookmark_manager in psql:
+connect to psql and create the bookmark_manager database:
+
 ```
-postgres=# CREATE DATABASE bookmark_manager;
+CREATE DATABASE bookmark_manager;
 ```
-Connect to that database:
+Connect to the database and then run the SQL script in the db/migrations folder.
+
+### To run the Bookmark Manager app
 ```
-postgres=# \c bookmark_manager;
+rackup -p 3000
 ```
-The create the bookmarks table by running the query saved in db/migrations/01_create_bookmarks_table.sql
+
+To view bookmarks, navigate to localhost:3000/bookmarks.
+
+### To run tests
+```
+rspec
+```
+
+### To run linting
+
+```
+rubocop
+```
