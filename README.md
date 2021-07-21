@@ -22,12 +22,13 @@ bundle
 
 ### Database setup
 
-connect to psql and create the bookmark_manager database:
+connect to psql and create bookmark_manager and bookmark_manager_test databases:
 
 ```
 CREATE DATABASE bookmark_manager;
+CREATE DATABASE bookmark_manager_test;
 ```
-Connect to the database and then run the SQL script in the db/migrations folder.
+To set up the appropriate tables, connect to each database in psql and then run the SQL script in the db/migrations folder.
 
 ### To run the Bookmark Manager app
 ```
