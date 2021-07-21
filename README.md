@@ -7,6 +7,11 @@ As a user
 So I can quickly visit my favourite websites
 I would like to see a list of my bookmarks
 ```
+```
+As a user
+So I can store a bookmark to visit later
+I would like to add a bookmark
+```
 
 ## Domain model
 
