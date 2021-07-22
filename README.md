@@ -17,6 +17,11 @@ As a user
 So I can remove a bookmark from bookmark manager
 I would like to delete a bookmark
 ```
+```
+As a user
+So I can change a bookmark's details
+I would like to update a bookmark
+```
 
 ## Domain model
 
