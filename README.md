@@ -12,6 +12,11 @@ As a user
 So I can store a bookmark to visit later
 I would like to add a bookmark
 ```
+```
+As a user
+So I can remove a bookmark from bookmark manager
+I would like to delete a bookmark
+```
 
 ## Domain model
 

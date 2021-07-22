@@ -3,7 +3,7 @@ require 'sinatra/reloader'
 require './lib/bookmark'
 
 class BookmarkManager < Sinatra::Base
-  enable :sessions
+  enable :sessions, :method_override
 
   configure :development do
     register Sinatra::Reloader
@@ -15,7 +15,7 @@ class BookmarkManager < Sinatra::Base
 
   get '/bookmarks' do
     @bookmarks = Bookmark.all
-    erb(:"bookmarks/show")
+    erb(:"bookmarks/index")
   end
 
   get '/bookmarks/new' do
@@ -24,6 +24,11 @@ class BookmarkManager < Sinatra::Base
 
   post '/add_bookmark' do
     Bookmark.create(url: params[:url], title: params[:title])
+    redirect '/bookmarks'
+  end
+
+  delete '/bookmarks/:id' do
+    Bookmark.delete(id: params[:id])
     redirect '/bookmarks'
   end
 
