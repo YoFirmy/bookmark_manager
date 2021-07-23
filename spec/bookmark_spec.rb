@@ -19,20 +19,25 @@ describe Bookmark do
   end
 
   describe '.create' do
+    it 'does not create a new bookmark if an invalid URL is submitted' do
+      Bookmark.create(url: 'invalid URL', title: 'Example')
+      expect(Bookmark.all).to be_empty
+    end
+
     it 'creates a new bookmark' do
-      bookmark = Bookmark.create(url: 'www.example.com', title: 'Example')
+      bookmark = Bookmark.create(url: 'https://example.com/', title: 'Example')
       persisted_data = persisted_data(id: bookmark.id)
 
       expect(bookmark).to be_a Bookmark
       expect(bookmark.id).to eq(persisted_data['id'])
-      expect(bookmark.url).to eq('www.example.com')
+      expect(bookmark.url).to eq('https://example.com/')
       expect(bookmark.title).to eq('Example')
     end
   end
 
   describe '.delete' do
     it 'destroys a bookmark' do
-      bookmark = Bookmark.create(url: 'www.example.com', title: 'Example')
+      bookmark = Bookmark.create(url: 'https://example.com/', title: 'Example')
       Bookmark.delete(id: bookmark.id)
 
       expect(Bookmark.all.length).to eq(0)
@@ -53,10 +58,10 @@ describe Bookmark do
 
   describe '.find' do
     it 'returns the requested bookmark' do
-      bookmark = Bookmark.create(url: 'www.example.com', title: 'Example')
+      bookmark = Bookmark.create(url: 'https://example.com/', title: 'Example')
       result = Bookmark.find(id: bookmark.id)
       expect(result).to be_a Bookmark
-      expect(result.url).to eq('www.example.com')
+      expect(result.url).to eq('https://example.com/')
       expect(result.title).to eq('Example')
       expect(result.id).to eq(bookmark.id)
     end

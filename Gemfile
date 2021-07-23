@@ -9,4 +9,5 @@ group :test, :development do
   gem "rubocop", "0.79.0"
   gem 'sinatra', '~> 2.1'
   gem 'sinatra-contrib', '~> 2.1'
+  gem 'sinatra-flash', '~> 0.3.0'
 end
