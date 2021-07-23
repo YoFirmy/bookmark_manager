@@ -12,7 +12,6 @@ describe Bookmark do
 
       expect(bookmarks.length).to eq(3)
       expect(bookmarks.first).to be_a(Bookmark)
-      p bookmark
       expect(bookmarks.first.id).to eq(bookmark.id)
       expect(bookmarks.first.title).to eq('CSS battle')
       expect(bookmarks.first.url).to eq('https://cssbattle.dev/')
