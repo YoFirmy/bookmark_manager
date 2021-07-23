@@ -1,5 +1,6 @@
 require 'pg'
 require 'uri'
+require_relative './comment'
 
 class Bookmark
   attr_reader :id, :title, :url
@@ -19,7 +20,11 @@ class Bookmark
 
   def self.create(url:, title:)
     return false unless is_url?(url)
-    result = DatabaseConnection.query("INSERT INTO bookmarks (title, url) VALUES('#{title}', '#{url}') RETURNING id, url, title;")
+
+    result = DatabaseConnection.query(
+      "INSERT INTO bookmarks (title, url) VALUES('#{title}', '#{url}') 
+      RETURNING id, url, title;"
+    )
     Bookmark.new(id: result[0]['id'], title: result[0]['title'], url: result[0]['url'])
   end
 
@@ -28,13 +33,20 @@ class Bookmark
   end
 
   def self.update(url:, title:, id:)
-    result = DatabaseConnection.query("UPDATE bookmarks SET url = '#{url}', title = '#{title}' WHERE id = #{id} RETURNING id, url, title;")
+    result = DatabaseConnection.query(
+      "UPDATE bookmarks SET url = '#{url}', title = '#{title}' WHERE id = #{id} 
+      RETURNING id, url, title;"
+    )
     Bookmark.new(id: result[0]['id'], title: result[0]['title'], url: result[0]['url'])
   end
 
   def self.find(id:)
     result = DatabaseConnection.query("SELECT * FROM bookmarks WHERE id = #{id};")
     Bookmark.new(id: result[0]['id'], title: result[0]['title'], url: result[0]['url'])
+  end
+
+  def comments(comment_class: Comment)
+    comment_class.where(bookmark_id: id)
   end
 
   private

@@ -22,6 +22,11 @@ As a user
 So I can change a bookmark's details
 I would like to update a bookmark
 ```
+```
+As a user
+So I can remember things about the bookmark
+I would like to comment on a bookmark
+```
 
 ## Domain model
 
